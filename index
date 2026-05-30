@@ -1,3 +1,6 @@
+
+raw
+Venancia presentacion · HTML
 <!doctype html>
 <html lang="es">
 <head>
@@ -129,7 +132,7 @@ p:last-child{margin-bottom:0}
   </div>
 </nav>
 <main>
-
+ 
 <!-- ══════════════════════════════════════ 1. ORIGEN -->
 <section id="intro">
   <div class="panel panel-accent">
@@ -174,7 +177,7 @@ p:last-child{margin-bottom:0}
     </div>
   </div>
 </section>
-
+ 
 <!-- ══════════════════════════════════════ 2. SOLUCIÓN + CORPUS -->
 <section id="rag">
   <div class="panel">
@@ -240,7 +243,7 @@ p:last-child{margin-bottom:0}
     </div>
   </div>
 </section>
-
+ 
 <!-- ══════════════════════════════════════ 3. ARQUITECTURA -->
 <section id="arq">
   <div class="panel">
@@ -301,7 +304,7 @@ p:last-child{margin-bottom:0}
     </div>
   </div>
 </section>
-
+ 
 <!-- ══════════════════════════════════════ 4. NEGOCIO -->
 <section id="negocio">
   <div class="panel">
@@ -360,7 +363,7 @@ p:last-child{margin-bottom:0}
     </div>
   </div>
 </section>
-
+ 
 <!-- ══════════════════════════════════════ 5. LIMITACIONES -->
 <section id="limites">
   <div class="panel">
@@ -408,7 +411,7 @@ p:last-child{margin-bottom:0}
     </div>
   </div>
 </section>
-
+ 
 <!-- ══════════════════════════════════════ 6. CIERRE -->
 <section id="cierre">
   <div class="panel panel-accent">
@@ -440,7 +443,7 @@ p:last-child{margin-bottom:0}
     </div>
   </div>
 </section>
-
+ 
 </main>
 <script>
 const sections=document.querySelectorAll('section[id]');
