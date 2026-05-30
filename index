@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>VenancIA · Defensa TFG</title>
+<style>
+:root{
+  --bg:#07111d;
+  --surface:#0d1e30;
+  --surface2:#112238;
+  --surface3:#162c44;
+  --accent:#5db8ff;
+  --accent2:#4de8b5;
+  --amber:#f5c842;
+  --text:#e8f2ff;
+  --muted:#7fa8cc;
+  --dim:#4d7a9e;
+  --border:rgba(93,184,255,.13);
+  --border2:rgba(93,184,255,.22);
+  --font:'Segoe UI',system-ui,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
+ 
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,17,29,.88);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;
+}
+.nav-inner{
+  max-width:1140px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:52px;gap:16px;flex-wrap:wrap;
+}
+.brand{
+  font-size:15px;font-weight:700;letter-spacing:.4px;
+  color:var(--accent);white-space:nowrap;
+}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:8px 0}
+.tabs a{
+  color:var(--muted);text-decoration:none;
+  font-size:13px;padding:6px 13px;border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.03);
+  transition:color .18s,border-color .18s,background .18s;
+  white-space:nowrap;
+}
+.tabs a:hover,.tabs a.active{
+  color:var(--accent);
+  border-color:var(--border2);
+  background:rgba(93,184,255,.09);
+}
+ 
+/* ── LAYOUT ── */
+main{max-width:1140px;margin:auto;padding:0 24px 100px}
+section{
+  min-height:90vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  align-items:start;
+  padding:36px 0;
+  border-bottom:1px solid var(--border);
+}
+section:last-child{border-bottom:none}
+ 
+/* ── PANELS ── */
+.panel{
+  background:linear-gradient(160deg,var(--surface),var(--surface2));
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:28px 26px;
+  height:100%;
+}
+.panel-accent{border-color:var(--border2)}
+ 
+/* ── BADGES ── */
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:999px;
+  border:1px solid var(--border2);
+  color:var(--accent);font-size:12px;font-weight:600;
+  letter-spacing:.5px;text-transform:uppercase;
+  background:rgba(93,184,255,.07);
+  margin-bottom:16px;
+}
+.badge-green{color:var(--accent2);border-color:rgba(77,232,181,.3);background:rgba(77,232,181,.07)}
+.badge-amber{color:var(--amber);border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.07)}
+ 
+/* ── TYPOGRAPHY ── */
+h1{font-size:42px;line-height:1.05;font-weight:800;margin-bottom:14px;letter-spacing:-.5px}
+h2{font-size:26px;font-weight:700;margin-bottom:14px;line-height:1.2;color:#d0e8ff}
+h3{font-size:17px;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+p{font-size:16px;line-height:1.65;color:#c5d8ee;margin-bottom:12px}
+p:last-child{margin-bottom:0}
+.lead{font-size:18px;color:#dde9f8;line-height:1.6;margin-bottom:16px}
+.small{font-size:13px;color:var(--muted)}
+em{font-style:italic;color:var(--muted)}
+ 
+/* ── STAT CHIPS ── */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.stat{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:16px;padding:14px 12px;text-align:center;
+}
+.stat-n{display:block;font-size:26px;font-weight:800;color:var(--accent);line-height:1}
+.stat-l{display:block;font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:.3px}
+ 
+/* ── CARDS ── */
+.card{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:18px;padding:18px;margin-bottom:12px;
+}
+.card:last-child{margin-bottom:0}
+.card-accent{border-color:var(--border2);background:rgba(93,184,255,.05)}
+.card-green{border-color:rgba(77,232,181,.25);background:rgba(77,232,181,.05)}
+.card-amber{border-color:rgba(245,200,66,.25);background:rgba(245,200,66,.04)}
+ 
+/* ── PAIN CARDS ── */
+.pain-list{display:grid;gap:10px;margin-top:4px}
+.pain{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:14px;padding:14px;
+}
+.pain-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(93,184,255,.12);border:1px solid var(--border2);
+  display:grid;place-items:center;flex:0 0 auto;font-size:16px;
+}
+.pain-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+.pain-desc{font-size:13px;color:var(--muted);line-height:1.5}
+ 
+/* ── DIFF CARDS ── */
+.diffs{display:grid;gap:12px;margin-top:6px}
+.diff{
+  display:grid;grid-template-columns:auto 1fr;gap:0;
+  border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.diff-bar{width:5px}
+.diff-bar.blue{background:var(--accent)}
+.diff-bar.green{background:var(--accent2)}
+.diff-bar.amber{background:var(--amber)}
+.diff-body{padding:14px 16px;background:rgba(255,255,255,.04)}
+.diff-title{font-size:14px;font-weight:700;margin-bottom:5px}
+.diff-desc{font-size:13px;color:var(--muted);line-height:1.5}
+ 
+/* ── PIPELINE ── */
+.pipeline{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.pipe-step{
+  display:flex;align-items:flex-start;gap:12px;position:relative;
+}
+.pipe-left{display:flex;flex-direction:column;align-items:center;width:36px;flex:0 0 auto}
+.pipe-dot{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:grid;place-items:center;font-weight:700;font-size:14px;color:#07111d;
+  flex:0 0 auto;
+}
+.pipe-line{width:2px;flex:1;min-height:16px;background:linear-gradient(to bottom,var(--accent),transparent);margin:2px auto 0;opacity:.35}
+.pipe-content{padding:0 0 20px;flex:1}
+.pipe-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.pipe-desc{font-size:13px;color:var(--muted);line-height:1.5}
+ 
+/* ── VS DECISION CARDS ── */
+.vs-list{display:grid;gap:10px;margin-top:6px}
+.vs-card{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:14px;padding:14px 16px;
+}
+.vs-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.vs-label{font-size:12px;color:var(--muted);letter-spacing:.3px}
+.vs-winner{
+  font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;
+  background:rgba(93,184,255,.15);border:1px solid var(--border2);color:var(--accent);
+}
+.vs-reasons{font-size:13px;color:#9ab8d0;line-height:1.6}
+.vs-reasons li{margin-bottom:2px}
+ul.vs-reasons{padding-left:16px}
+ 
+/* ── COST TABLE ── */
+.cost-rows{display:grid;gap:8px;margin-top:6px}
+.cost-row{
+  display:grid;grid-template-columns:1fr 1.5fr;
+  gap:12px;align-items:start;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:12px;padding:12px 14px;
+}
+.cost-dim{font-size:13px;font-weight:600;color:var(--muted)}
+.cost-val{font-size:13px;color:#c0d5ea;line-height:1.5}
+ 
+/* ── DEPLOY CARDS ── */
+.deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.deploy{
+  border-radius:16px;overflow:hidden;border:1px solid var(--border);
+}
+.deploy-top{padding:12px 14px;border-bottom:1px solid var(--border)}
+.deploy-title{font-size:15px;font-weight:700;margin-bottom:2px}
+.deploy-sub{font-size:12px;color:var(--muted)}
+.deploy-body{padding:12px 14px;background:rgba(255,255,255,.03)}
+.deploy-body p{font-size:13px;color:#9ab8d0;line-height:1.55;margin-bottom:6px}
+ 
+/* ── LIMIT TABLE ── */
+.limit-list{display:grid;gap:8px;margin-top:6px}
+.limit-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+}
+.limit-l{padding:12px 14px;border-right:1px solid var(--border)}
+.limit-r{padding:12px 14px;background:rgba(77,232,181,.04)}
+.limit-tag{font-size:11px;font-weight:600;letter-spacing:.5px;margin-bottom:4px}
+.limit-tag.warn{color:var(--amber)}
+.limit-tag.ok{color:var(--accent2)}
+.limit-text{font-size:13px;color:#9ab8d0;line-height:1.5}
+ 
+/* ── CORPUS BARS ── */
+.corpus-list{display:grid;gap:10px;margin-top:8px}
+.corpus-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.corpus-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.corpus-name{font-size:13px;color:var(--muted)}
+.corpus-n{font-size:15px;font-weight:700}
+.corpus-bar-bg{height:5px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
+.corpus-bar{height:5px;border-radius:4px;transition:width .6s}
+ 
+/* ── WIRESHARK ── */
+.ws-box{
+  background:#0a1a0d;border:1px solid rgba(77,232,181,.2);
+  border-radius:16px;padding:16px;font-family:Consolas,monospace;font-size:13px;
+  color:#4de8b5;line-height:1.6;margin-top:8px;
+}
+.ws-comment{color:#4d7a4e}
+ 
+/* ── CLOSING ── */
+.close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.close-stat{
+  background:rgba(93,184,255,.07);border:1px solid var(--border2);
+  border-radius:14px;padding:14px;text-align:center;
+}
+.close-stat-icon{font-size:22px;margin-bottom:6px}
+.close-stat-text{font-size:13px;font-weight:600;color:var(--accent)}
+ 
+.quote{
+  border-left:3px solid var(--accent);
+  padding:14px 16px;margin:16px 0;
+  font-size:16px;color:#c0d8f0;line-height:1.6;font-style:italic;
+  background:rgba(93,184,255,.05);border-radius:0 12px 12px 0;
+}
+ 
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  section{grid-template-columns:1fr;min-height:auto}
+  h1{font-size:32px}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .deploy-grid{grid-template-columns:1fr}
+  .limit-row{grid-template-columns:1fr}
+  .limit-l{border-right:none;border-bottom:1px solid var(--border)}
+  .nav-inner{height:auto;padding:10px 0}
+  .tabs a{font-size:12px;padding:5px 10px}
+}
+</style>
+</head>
+<body>
+ 
+<nav>
+  <div class="nav-inner">
+    <div class="brand">VenancIA · Defensa TFG</div>
+    <div class="tabs">
+      <a href="#intro">1. Origen</a>
+      <a href="#solucion">2. Solución</a>
+      <a href="#arq">3. Arquitectura</a>
+      <a href="#costes">4. Negocio</a>
+      <a href="#limites">5. Limitaciones</a>
+      <a href="#cierre">6. Cierre</a>
+    </div>
+  </div>
+</nav>
+ 
+<main>
+ 
+<!-- ════════════════════════════════════════ 1. ORIGEN -->
+<section id="intro">
+  <div class="panel panel-accent">
+    <div class="badge">1 · Origen del proyecto</div>
+    <h1>El problema nació antes que el TFG</h1>
+    <p class="lead">Trabajé en una e-commerce — Escape City Box — donde teníamos implementado <strong>Tidio</strong>, un plugin de WordPress de pago para atención al cliente.</p>
+    <p>El problema era triple: cuota mensual elevada, configuración costosa que encima no funcionaba siempre, y un límite de chats al mes que en temporada alta dejaba al equipo sin cobertura. Al final, contestábamos nosotros igualmente.</p>
+    <p>Eso me hizo preguntarme: ¿existe una alternativa sin dependencia de terceros, sin coste por uso, y que responda bien sin configuración manual de cada respuesta?</p>
+    <p style="font-size:14px;color:var(--accent2);font-weight:600;margin-top:6px">Esa pregunta es el origen de VenancIA.</p>
+    <div class="stats">
+      <div class="stat"><span class="stat-n">380</span><span class="stat-l">chunks indexados</span></div>
+      <div class="stat"><span class="stat-n">5</span><span class="stat-l">fuentes documentales</span></div>
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">ejecución local</span></div>
+    </div>
+  </div>
+ 
+  <div class="panel">
+    <h2>Los tres problemas de Tidio</h2>
+    <div class="pain-list">
+      <div class="pain">
+        <div class="pain-icon">💶</div>
+        <div>
+          <div class="pain-title">Coste mensual elevado</div>
+          <div class="pain-desc">Cuota fija independiente del uso real. En temporada baja, dinero desperdiciado.</div>
+        </div>
+      </div>
+      <div class="pain">
+        <div class="pain-icon">⏱</div>
+        <div>
+          <div class="pain-title">Inversión de tiempo sin retorno</div>
+          <div class="pain-desc">Configurar respuestas automáticas requería horas. Y encima fallaban. El equipo contestaba igualmente.</div>
+        </div>
+      </div>
+      <div class="pain">
+        <div class="pain-icon">🚫</div>
+        <div>
+          <div class="pain-title">Límite de chats al mes</div>
+          <div class="pain-desc">En picos de demanda el crédito se agotaba. Subir de plan era prohibitivamente caro.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card card-accent" style="margin-top:16px">
+      <p class="small" style="color:var(--muted);margin:0">El caso de uso elegido para validar la solución es el IES Venancio Blanco — pero la arquitectura es completamente agnóstica al dominio: el corpus es sustituible. Lo mismo funciona para ayuntamientos, empresas o cualquier organización con información repetitiva que atender.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ════════════════════════════════════════ 2. SOLUCIÓN -->
+<section id="solucion">
+  <div class="panel">
+    <div class="badge badge-green">2 · La solución</div>
+    <h2>Por qué RAG y no otra aproximación</h2>
+ 
+    <div class="diffs">
+      <div class="diff">
+        <div class="diff-bar amber"></div>
+        <div class="diff-body">
+          <div class="diff-title" style="color:var(--amber)">Fine-tuning — descartado</div>
+          <div class="diff-desc">Requiere GPU, datos etiquetados y re-entrenamiento cada vez que cambia la información. Inviable en hardware de centro y costoso de mantener.</div>
+        </div>
+      </div>
+      <div class="diff">
+        <div class="diff-bar amber"></div>
+        <div class="diff-body">
+          <div class="diff-title" style="color:var(--amber)">Prompt con todo el contexto — descartado</div>
+          <div class="diff-desc">Ventana de contexto limitada. 380 chunks no caben. La calidad degrada con contextos largos y cada consulta sería más lenta y costosa.</div>
+        </div>
+      </div>
+      <div class="diff">
+        <div class="diff-bar amber"></div>
+        <div class="diff-body">
+          <div class="diff-title" style="color:var(--amber)">Búsqueda por palabras clave — descartado</div>
+          <div class="diff-desc">"¿Cuándo puedo apuntarme?" no encuentra nada si el corpus dice "período de matrícula". No entiende la intención.</div>
+        </div>
+      </div>
+      <div class="diff">
+        <div class="diff-bar green"></div>
+        <div class="diff-body">
+          <div class="diff-title" style="color:var(--accent2)">RAG — elegido ✓</div>
+          <div class="diff-desc">Búsqueda semántica + contexto controlado + actualizable sin reentrenamiento + anti-alucinación nativo. Sin GPU para entrenamiento.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="panel">
+    <h2>Cómo funciona RAG</h2>
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-left">
+          <div class="pipe-dot">1</div>
+          <div class="pipe-line"></div>
+        </div>
+        <div class="pipe-content">
+          <div class="pipe-title">Ingesta del corpus</div>
+          <div class="pipe-desc">Scraper Python + BeautifulSoup extrae texto de PDFs y webs. Se divide en chunks con overlap de 150 caracteres. Cada chunk se vectoriza con <code>nomic-embed-text</code> y se almacena en Qdrant con metadatos.</div>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-left">
+          <div class="pipe-dot">2</div>
+          <div class="pipe-line"></div>
+        </div>
+        <div class="pipe-content">
+          <div class="pipe-title">Vectorización de la consulta</div>
+          <div class="pipe-desc">La pregunta del usuario se convierte al mismo espacio vectorial con el mismo modelo de embeddings.</div>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-left">
+          <div class="pipe-dot">3</div>
+          <div class="pipe-line"></div>
+        </div>
+        <div class="pipe-content">
+          <div class="pipe-title">Recuperación semántica</div>
+          <div class="pipe-desc">Qdrant busca por similitud coseno los chunks más cercanos a la consulta (top-k). Solo llegan al LLM los fragmentos más relevantes.</div>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-left">
+          <div class="pipe-dot">4</div>
+          <div class="pipe-line" style="opacity:0"></div>
+        </div>
+        <div class="pipe-content">
+          <div class="pipe-title">Generación con contexto</div>
+          <div class="pipe-desc"><code>llama3.2</code> genera la respuesta usando los chunks recuperados. Si no hay contexto relevante, el modelo lo indica — no inventa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ════════════════════════════════════════ 3. ARQUITECTURA -->
+<section id="arq">
+  <div class="panel">
+    <div class="badge">3 · Arquitectura</div>
+    <h2>Decisiones técnicas justificadas</h2>
+ 
+    <div class="vs-list">
+      <div class="vs-card">
+        <div class="vs-header">
+          <span class="vs-label">ORQUESTACIÓN</span>
+          <span class="vs-winner">✓ n8n</span>
+        </div>
+        <ul class="vs-reasons">
+          <li>Self-hosteable, 0€/consulta, sin límite de llamadas</li>
+          <li>Agnóstico al LLM — cambiar modelo es modificar una credencial</li>
+          <li>Pipeline visual e inspeccionable en vivo</li>
+          <li>vs LangChain/LlamaIndex: frameworks de código con mayor coste de mantenimiento</li>
+        </ul>
+      </div>
+      <div class="vs-card">
+        <div class="vs-header">
+          <span class="vs-label">BASE VECTORIAL</span>
+          <span class="vs-winner">✓ Qdrant</span>
+        </div>
+        <ul class="vs-reasons">
+          <li>Diseñado desde cero para vectores (Rust, HNSW)</li>
+          <li>Filtrado por metadatos nativo — clave para filtrar por origen/tipo/documento</li>
+          <li>vs Elasticsearch: añadió vectores en v8.0, pero nació como motor full-text; sobredimensionado aquí</li>
+          <li>vs ChromaDB: menos maduro para producción</li>
+        </ul>
+      </div>
+      <div class="vs-card">
+        <div class="vs-header">
+          <span class="vs-label">MODELO LLM</span>
+          <span class="vs-winner">✓ llama3.2</span>
+        </div>
+        <ul class="vs-reasons">
+          <li>Comparativa en Fase 1 sobre el mismo corpus: llama3.2, llama3.1 y qwen2.5:7b</li>
+          <li>Mejor equilibrio calidad/rendimiento en CPU sin GPU dedicada</li>
+          <li>llama3.1: más pesado sin mejora proporcional en este dominio</li>
+          <li>qwen2.5:7b: menor precisión en español para dominio educativo</li>
+        </ul>
+      </div>
+      <div class="vs-card">
+        <div class="vs-header">
+          <span class="vs-label">BACKEND</span>
+          <span class="vs-winner">✓ FastAPI</span>
+        </div>
+        <ul class="vs-reasons">
+          <li>Async nativo: no bloquea el hilo mientras espera respuesta del LLM</li>
+          <li>Validación automática con Pydantic — cero boilerplate de validación manual</li>
+          <li>Swagger UI en /docs generado automáticamente</li>
+          <li>vs Flask: requeriría escribir manualmente toda esa infraestructura</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="panel">
+    <h2>Evolución Fase 1 → Fase 2</h2>
+    <div class="card card-accent">
+      <h3 style="margin-top:0">Fase 1 — FastAPI puro</h3>
+      <p style="font-size:14px;color:var(--muted)">El pipeline RAG corría íntegramente en Python: vectorización, búsqueda en Qdrant y llamada al LLM eran código manual. Validó la arquitectura RAG — el sistema respondía bien. Pero cualquier cambio requería tocar código.</p>
+    </div>
+    <div style="text-align:center;padding:10px 0;color:var(--accent);font-size:20px">↓</div>
+    <div class="card card-green">
+      <h3 style="margin-top:0;color:var(--accent2)">Fase 2 — n8n como orquestador</h3>
+      <p style="font-size:14px;color:var(--muted)">FastAPI queda como capa ligera que delega al webhook de n8n. El pipeline es visual, la memoria de sesión fue configurar un nodo, y cambiar de LLM es modificar una credencial. La arquitectura se volvió mantenible sin perder rendimiento.</p>
+    </div>
+ 
+    <h2 style="margin-top:22px">Infraestructura</h2>
+    <div class="card">
+      <p class="small">7 contenedores en Docker Compose: <strong>frontend</strong> (Vue + nginx), <strong>backend</strong> (FastAPI), <strong>n8n</strong>, <strong>ollama</strong> (llama3.2 + nomic-embed-text), <strong>qdrant</strong>, <strong>panel admin</strong> (Laravel + PHP 8.4), <strong>postgres</strong> (interno de n8n).</p>
+      <p class="small" style="margin-top:8px">Red interna Docker. El despliegue completo es un <code style="font-family:Consolas;font-size:12px;color:var(--accent2)">docker compose up -d</code>.</p>
+    </div>
+ 
+    <h2 style="margin-top:22px">Privacidad demostrable</h2>
+    <div class="ws-box">
+      <div class="ws-comment"># Filtro durante la consulta</div>
+      ip.dst != 192.168.0.0/16<br>
+      and ip.dst != 172.16.0.0/12<br>
+      and ip.dst != 10.0.0.0/8<br><br>
+      <div class="ws-comment"># Resultado: 0 paquetes nuevos hacia exterior</div>
+      <span style="color:#7ee0c3">→ El modelo, los embeddings y el corpus: todos en local.</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- ════════════════════════════════════════ 4. NEGOCIO -->
+<section id="costes">
+  <div class="panel">
+    <div class="badge badge-amber">4 · Costes y modelo de negocio</div>
+    <h2>Coste 0 por consulta — con matices</h2>
+    <p>Sin API externa, sin tarificación por llamada. Pero el coste real tiene tres dimensiones que conviene ser honesta sobre ellas.</p>
+ 
+    <div class="cost-rows">
+      <div class="cost-row">
+        <div class="cost-dim">Hardware</div>
+        <div class="cost-val">CPU sin GPU para el volumen de un IES. Para escalar: servidor con GPU — coste puntual, no recurrente. El tutor planteaba una partida presupuestaria del centro que también tendría uso pedagógico para alumnos de informática.</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-dim">Implantación</div>
+        <div class="cost-val">Planning de la memoria + 2 meses de investigación previa. Una jornada técnica por despliegue en un centro nuevo.</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-dim">Mantenimiento</div>
+        <div class="cost-val">Revisión periódica del corpus cada curso académico. Con el panel de administración, el propio personal del centro puede hacerlo sin intervención técnica.</div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="panel">
+    <h2>Dos modalidades de despliegue</h2>
+    <div class="deploy-grid">
+      <div class="deploy">
+        <div class="deploy-top" style="background:rgba(93,184,255,.08);border-bottom-color:var(--border2)">
+          <div class="deploy-title" style="color:var(--accent)">On-premise</div>
+          <div class="deploy-sub">El cliente gestiona su infraestructura</div>
+        </div>
+        <div class="deploy-body">
+          <p>Los datos nunca salen de las instalaciones del cliente. Cumplimiento estructural del RGPD.</p>
+          <p style="color:var(--accent2);font-size:12px;font-weight:600">Ingresos: licencia de implantación + tarifa anual de mantenimiento</p>
+          <p>Especialmente adecuado para instituciones públicas con requisitos estrictos de privacidad.</p>
+        </div>
+      </div>
+      <div class="deploy">
+        <div class="deploy-top" style="background:rgba(77,232,181,.07);border-bottom-color:rgba(77,232,181,.25)">
+          <div class="deploy-title" style="color:var(--accent2)">SaaS</div>
+          <div class="deploy-sub">Servicio gestionado desde servidor propio</div>
+        </div>
+        <div class="deploy-body">
+          <p>El cliente no necesita infraestructura. Actualizaciones centralizadas.</p>
+          <p style="color:var(--accent2);font-size:12px;font-weight:600">Ingresos: cuota periódica — sin límite de consultas</p>
+          <p>Similar a Tidio, pero sin tarificación por chat ni créditos que agotar.</p>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:15px;color:var(--accent)">Escalabilidad del modelo</h3>
+      <p style="font-size:13px;color:var(--muted)">El corpus es sustituible por dominio — misma arquitectura para IES, ayuntamientos o empresas. Cambiar el LLM no requiere tocar el pipeline: es una credencial en n8n. El cliente no queda obsoleto con la evolución del mercado de modelos.</p>
+    </div>
+ 
+    <div class="card card-accent" style="margin-top:10px">
+      <h3 style="margin-top:0;font-size:14px;color:var(--accent2)">Terminología del ciclo aplicada</h3>
+      <p class="small" style="color:var(--muted)"><strong style="color:var(--text)">On-premise</strong> vs <strong style="color:var(--text)">SaaS</strong> (Software as a Service) vs <strong style="color:var(--text)">IaaS</strong> (si el cliente gestiona su propio servidor). <strong style="color:var(--text)">Modelo de licenciamiento</strong> vs <strong style="color:var(--text)">modelo de suscripción</strong>.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ════════════════════════════════════════ 5. LIMITACIONES -->
+<section id="limites">
+  <div class="panel">
+    <div class="badge">5 · Limitaciones y mejoras</div>
+    <h2>Lo que está en la memoria</h2>
+ 
+    <div class="limit-list">
+      <div class="limit-row">
+        <div class="limit-l">
+          <div class="limit-tag warn">⚠ Limitación</div>
+          <div class="limit-text">Latencia 8–20s (60–70s en cold start)</div>
+        </div>
+        <div class="limit-r">
+          <div class="limit-tag ok">✓ Defensa</div>
+          <div class="limit-text">Aceptable en régimen estable. Mejora: warm-up automático al arrancar el sistema.</div>
+        </div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-l">
+          <div class="limit-tag warn">⚠ Limitación</div>
+          <div class="limit-text">Sin GPU dedicada</div>
+        </div>
+        <div class="limit-r">
+          <div class="limit-tag ok">✓ Defensa</div>
+          <div class="limit-text">Decisión consciente: hardware accesible sin inversión adicional. CPU viable para el volumen esperado.</div>
+        </div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-l">
+          <div class="limit-tag warn">⚠ Limitación</div>
+          <div class="limit-text">Reingesta borra la colección completa</div>
+        </div>
+        <div class="limit-r">
+          <div class="limit-tag ok">✓ Defensa</div>
+          <div class="limit-text">Documentado en §4.7.3. Mejora futura: actualización incremental en Qdrant.</div>
+        </div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-l">
+          <div class="limit-tag warn">⚠ Limitación</div>
+          <div class="limit-text">Frontend solo en LAN</div>
+        </div>
+        <div class="limit-r">
+          <div class="limit-tag ok">✓ Defensa</div>
+          <div class="limit-text">Resuelto parcialmente. Producción completa: dominio + HTTPS con Let's Encrypt (§6.1).</div>
+        </div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-l">
+          <div class="limit-tag warn">⚠ Limitación</div>
+          <div class="limit-text">URLs del corpus hardcodeadas</div>
+        </div>
+        <div class="limit-r">
+          <div class="limit-tag ok">✓ Defensa</div>
+          <div class="limit-text">Identificado. Solución: tabla de configuración editable desde el panel de administración.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="panel">
+    <h2>Corpus — 380 chunks</h2>
+    <div class="corpus-list">
+      <div class="corpus-item">
+        <div class="corpus-header">
+          <span class="corpus-name">Reglamento de Régimen Interior</span>
+          <span class="corpus-n" style="color:var(--accent)">105</span>
+        </div>
+        <div class="corpus-bar-bg"><div class="corpus-bar" style="width:100%;background:var(--accent)"></div></div>
+      </div>
+      <div class="corpus-item">
+        <div class="corpus-header">
+          <span class="corpus-name">Propuesta Curricular ESO</span>
+          <span class="corpus-n" style="color:var(--accent2)">95</span>
+        </div>
+        <div class="corpus-bar-bg"><div class="corpus-bar" style="width:90%;background:var(--accent2)"></div></div>
+      </div>
+      <div class="corpus-item">
+        <div class="corpus-header">
+          <span class="corpus-name">Propuesta Curricular Bach.</span>
+          <span class="corpus-n" style="color:#a78bfa">69</span>
+        </div>
+        <div class="corpus-bar-bg"><div class="corpus-bar" style="width:65%;background:#a78bfa"></div></div>
+      </div>
+      <div class="corpus-item">
+        <div class="corpus-header">
+          <span class="corpus-name">Web IES Venancio Blanco</span>
+          <span class="corpus-n" style="color:var(--amber)">58</span>
+        </div>
+        <div class="corpus-bar-bg"><div class="corpus-bar" style="width:55%;background:var(--amber)"></div></div>
+      </div>
+      <div class="corpus-item">
+        <div class="corpus-header">
+          <span class="corpus-name">Portal Educacyl JCyL</span>
+          <span class="corpus-n" style="color:#f87171">53</span>
+        </div>
+        <div class="corpus-bar-bg"><div class="corpus-bar" style="width:50%;background:#f87171"></div></div>
+      </div>
+    </div>
+ 
+    <h2 style="margin-top:22px">Mejoras surgidas después</h2>
+    <div class="card" style="margin-top:6px">
+      <p class="small" style="color:var(--muted)">→ <strong style="color:var(--text)">Valoración de respuestas</strong> (👍/👎): identifica chunks problemáticos sin intervención técnica.</p>
+      <p class="small" style="color:var(--muted);margin-top:6px">→ <strong style="color:var(--text)">Fuentes colapsadas:</strong> botón "Ver fuente" — trazabilidad opcional sin ruido para el usuario medio.</p>
+      <p class="small" style="color:var(--muted);margin-top:6px">→ <strong style="color:var(--text)">Indicador de progreso real:</strong> actualmente temporizado en frontend. Implementación real: endpoint de estado en FastAPI + polling.</p>
+      <p class="small" style="color:var(--muted);margin-top:6px">→ <strong style="color:var(--text)">URL pública con HTTPS:</strong> la arquitectura ya lo soporta. Falta dominio + Let's Encrypt.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ════════════════════════════════════════ 6. CIERRE -->
+<section id="cierre">
+  <div class="panel panel-accent">
+    <div class="badge badge-green">6 · Cierre</div>
+    <h1 style="font-size:34px;line-height:1.1">La IA generativa local ya es viable sin GPU ni APIs externas.</h1>
+    <div class="close-stats">
+      <div class="close-stat">
+        <div class="close-stat-icon">✓</div>
+        <div class="close-stat-text">Prototipo funciona</div>
+      </div>
+      <div class="close-stat">
+        <div class="close-stat-icon">✓</div>
+        <div class="close-stat-text">Arquitectura escalable</div>
+      </div>
+      <div class="close-stat">
+        <div class="close-stat-icon">✓</div>
+        <div class="close-stat-text">Privacidad demostrable</div>
+      </div>
+    </div>
+    <div class="quote">
+      "Lo que falta es despliegue. Y eso es una conversación de producto, no técnica."
+    </div>
+    <p class="small" style="margin-top:16px">Elena González Plaza · DAM 2025/2026 · IES Venancio Blanco · <span style="color:var(--accent)">github.com/EGlezPlz/tfg-chatbot-rag</span></p>
+  </div>
+ 
+  <div class="panel">
+    <h2>As en la manga — preguntas del tribunal</h2>
+    <div class="card" style="margin-bottom:10px">
+      <p class="small" style="font-weight:600;color:var(--text);margin-bottom:4px">"¿Por qué Docker Compose y no Kubernetes?"</p>
+      <p class="small" style="color:var(--muted)">Kubernetes es para orquestación multi-nodo. Para un único servidor, Compose es suficiente y mucho más simple. Kubernetes sería el paso natural en infraestructura multi-tenant.</p>
+    </div>
+    <div class="card" style="margin-bottom:10px">
+      <p class="small" style="font-weight:600;color:var(--text);margin-bottom:4px">"¿Por qué PostgreSQL?"</p>
+      <p class="small" style="color:var(--muted)">Es la base de datos interna de n8n — no es una elección propia. No interviene en el pipeline RAG.</p>
+    </div>
+    <div class="card" style="margin-bottom:10px">
+      <p class="small" style="font-weight:600;color:var(--text);margin-bottom:4px">"¿Por qué nginx?"</p>
+      <p class="small" style="color:var(--muted)">Sirve la app Vue compilada y actúa como proxy inverso hacia n8n. El frontend usa rutas relativas — nginx redirige internamente sin exponer el puerto de n8n al exterior. Evita CORS y mejora la seguridad.</p>
+    </div>
+    <div class="card" style="margin-bottom:10px">
+      <p class="small" style="font-weight:600;color:var(--text);margin-bottom:4px">"¿Cómo garantizas calidad del chunking?"</p>
+      <p class="small" style="color:var(--muted)">Overlap de 150 caracteres para no perder contexto en los límites. Filtro de líneas cortas para eliminar ruido. Validación empírica en Fase 1 sobre preguntas de prueba.</p>
+    </div>
+    <div class="card">
+      <p class="small" style="font-weight:600;color:var(--text);margin-bottom:4px">"¿Qué pasa con el RGPD?"</p>
+      <p class="small" style="color:var(--muted)">Cumplimiento estructural: no hay transferencia a terceros porque no hay terceros. El corpus es información institucional pública, no datos personales. Ninguna consulta sale del sistema local.</p>
+    </div>
+  </div>
+</section>
+ 
+</main>
+ 
+<script>
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.tabs a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+e.target.id));
+    }
+  });
+}, {threshold: 0.3});
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
